@@ -1,23 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {useSelector, useDispatch} from "react-redux";
+import {FirstAction} from "./redux/Action"
 function App() {
+  const app = useSelector(state => state.app)
+  const dispatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>{app.first}</h1>
+        <button onClick={()=>{
+          if(app.first === '' || app.first === "melhem")
+          dispatch(FirstAction("ehab"))
+          else
+          dispatch(FirstAction("melhem"))
+
+
+        }}>click on me</button>
     </div>
   );
 }
